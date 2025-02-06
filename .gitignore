@@ -1,3 +1,5 @@
 node_modules/
 dist/
 file-tree.txt
+logs/
+.env
