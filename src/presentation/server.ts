@@ -15,25 +15,25 @@ export class Server {
         console.log('Server started...');
 
         // Mandar email
-        // new SendEmailLogs(emailService, fileSystemLogRepository).execute([
-        //     'webmasterp2m@gmail.com',
-        //     'moctezuma.team@gmail.com'
-        // ]);
+        new SendEmailLogs(emailService, fileSystemLogRepository).execute([
+            'webmasterp2m@gmail.com',
+            'moctezuma.team@gmail.com'
+        ]);
 
-        // CronService.createJob(
-        //     '*/5 * * * * *',
-        //     () => {
-        //         const url = 'https://google.com';
-        //         // const url = 'http://localhost:3001';
+        CronService.createJob(
+            '*/5 * * * * *',
+            () => {
+                const url = 'https://google.com';
+                // const url = 'http://localhost:3001';
 
-        //         new CheckService(
-        //             fileSystemLogRepository,
-        //             () => console.log(`Service ${url} is OK`),
-        //             (error) => console.log(error)
-        //         ).execute( url )
+                new CheckService(
+                    fileSystemLogRepository,
+                    () => console.log(`Service ${url} is OK`),
+                    (error) => console.log(error)
+                ).execute( url )
                 
-        //     }
-        // );
+            }
+        );
 
     }
 
