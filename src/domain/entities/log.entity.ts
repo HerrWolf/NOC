@@ -5,23 +5,38 @@ export enum LogSeverityLevel {
     high = 'high',
 }
 
+export interface logEntityOptions {
+    message: string;
+    level: LogSeverityLevel;
+    origin: string;
+    createdAt?: Date;
+}
+
 export class LogEntity {
 
     public level: LogSeverityLevel;
     public message: string;
+    public origin: string;
     public createdAt: Date;
 
-    constructor( message: string, level: LogSeverityLevel) {
+    constructor( options: logEntityOptions ) {
+        const { message, level, origin, createdAt = new Date() } = options;
+
         this.message = message;
         this.level = level;
-        this.createdAt = new Date();
+        this.createdAt = createdAt;
+        this.origin = origin;
     }
 
     static fromJson( json: string ): LogEntity {
-        const { message, level, createdAt } = JSON.parse(json);
+        const { message, level, createdAt, origin } = JSON.parse(json);
 
-        const log = new LogEntity(message, level);
-        log.createdAt = new Date(createdAt);
+        const log = new LogEntity({
+            message,
+            level,
+            createdAt,
+            origin,
+        });
 
         return log;
     }
