@@ -3,3 +3,5 @@ dist/
 file-tree.txt
 logs/
 .env
+mongo/
+postgres/
